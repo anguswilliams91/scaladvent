@@ -1,10 +1,11 @@
 import scala.io.Source
+import scala.annotation.tailrec
 
 object puzzleSeven {
 
   case class DiscTree(name: String, discWeight: Int, children: List[DiscTree]) {
 
-    val isEmpty = false
+    //Class representing with trees of programs holding discs
 
     override def toString: String =
       "DiscTree(Name: " + name + ", Weight: " + discWeight + ", " + "Children: {" + children.map(_.toString).foldRight("")(_ + ", " + _) + " })"
@@ -36,6 +37,7 @@ object puzzleSeven {
 
     lazy val correctValue: Int = {
 
+      @tailrec
       def correctValueRec(tree: DiscTree): Int = {
         val imbalanced = tree.isBalanced
         imbalanced match {
