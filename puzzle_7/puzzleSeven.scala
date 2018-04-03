@@ -5,7 +5,7 @@ object puzzleSeven {
 
   case class DiscTree(name: String, discWeight: Int, children: List[DiscTree]) {
 
-    //Class representing with trees of programs holding discs
+    //Class representing trees of programs holding discs
 
     override def toString: String =
       "DiscTree(Name: " + name + ", Weight: " + discWeight + ", " + "Children: {" + children.map(_.toString).foldRight("")(_ + ", " + _) + " })"
