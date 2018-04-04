@@ -10,14 +10,16 @@ object puzzleNine {
       val bangPattern = """!.{1}""".r
       val inputNoBangs = bangPattern.replaceAllIn(input, "")
 
-      def removeGarbageRec(input: String, acc: Int): (String, Int) = input.indexOf('<') match {
-        case -1 => (input, acc)
-        case _ => {
-          val leftPos = input indexOf '<'
-          val rightPos = input indexOf '>'
-          val before = input slice(0, leftPos)
-          val after = input slice(rightPos + 1, input.size)
-          removeGarbageRec(before + after, acc + rightPos - leftPos - 1)
+      def removeGarbageRec(input: String, acc: Int): (String, Int) = {
+        val leftPos = input indexOf '<'
+        leftPos match {
+          case -1 => (input, acc)
+          case _ => {
+            val rightPos = input indexOf '>'
+            val before = input slice(0, leftPos)
+            val after = input slice(rightPos + 1, input.size)
+            removeGarbageRec(before + after, acc + rightPos - leftPos - 1)
+          }
         }
       }
 
