@@ -8,8 +8,6 @@ object puzzleNine {
 
     def removeGarbage(input: String): (String, Int) = {
       val bangPattern = """!.{1}""".r
-      val opener = """<""".r
-      val closer = """>""".r
       val inputNoBangs = bangPattern.replaceAllIn(input, "")
 
       def removeGarbageRec(input: String, acc: Int): (String, Int) = input.indexOf('<') match {
