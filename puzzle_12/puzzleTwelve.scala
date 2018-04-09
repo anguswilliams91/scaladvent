@@ -12,7 +12,7 @@ object puzzleTwelve {
   def findFriends(id: Int, pairs: Set[Set[Int]]): List[Int] = {
     val seedSet = pairs.filter(_ contains id)
     val seeds = seedSet.flatMap(_ - id)
-    seeds.toList.flatMap(findGroup(_, pairs -- seedSet)) ++ seeds.toList
+    seeds.toList.flatMap(findFriends(_, pairs -- seedSet)) ++ seeds.toList
   }
 
   def findGroup(id: Int, pairs: Set[Set[Int]]): Set[Int] = findFriends(id, pairs).toSet + id
