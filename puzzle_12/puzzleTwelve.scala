@@ -17,7 +17,10 @@ object puzzleTwelve {
 
   def findGroup(id: Int, pairs: Set[Set[Int]]): Set[Int] = findFriends(id, pairs).toSet + id
 
-  def findAllGroups(pairs: Set[Set[Int]]): Set[Set[Int]] = pairs.flatMap(_.toList).map(findGroup(_, pairs)).toSet
+  def findAllGroups(pairs: Set[Set[Int]]): Set[Set[Int]] = {
+    val programs = pairs.flatMap(_.toList).toSet
+    programs.map(findGroup(_, pairs)).toSet
+  }
 
   def main(args: Array[String]): Unit = {
 
